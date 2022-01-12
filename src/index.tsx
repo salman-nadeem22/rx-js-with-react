@@ -1,17 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Counter from './components/Counter';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const Root = () => {
+  return (
+    <Provider store={store}>
+      <h3>React + Context + useReducer + RxJS Observables</h3>
+      <p>
+        The purpose of this Counter app is to learn RxJS by using it alone with
+        React's new hooks features.
+      </p>
+      <p>
+        NOTE: The RxJS' Observable gets fired on the browser's console (F12) but
+        not in the component itself! L@@k at{' '}
+        <u>./src/context/Counter/middleware.js</u>
+      </p>
+      <Counter />
+    </Provider>
+  );
+};
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const rootElement = document.getElementById('root');
+ReactDOM.render(<Root />, rootElement);
